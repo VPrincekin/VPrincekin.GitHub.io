@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>强化学习入门算法: QLearning &amp; Sarsa</title>
+    <url>/2020/08/20/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AE%97%E6%B3%95-QLearning-Sarsa/</url>
+    <content><![CDATA[<h2 id="QLearning-off-policy"><a href="#QLearning-off-policy" class="headerlink" title="QLearning (off-policy)"></a>QLearning (off-policy)</h2><h3 id="整体学习流程："><a href="#整体学习流程：" class="headerlink" title="整体学习流程："></a>整体学习流程：</h3><p>一次循环</p>
+<ul>
+<li><p>初始化环境</p>
+</li>
+<li><p>当前回合 （循环，直到当前回合结束）</p>
+<ul>
+<li><p>根据当前 S， 选择动作 a。(动作选择规则：1.随机选择。2.根据当前 S 最大的 a选择。)</p>
+</li>
+<li><p>在环境中采取行为 a, 获得下一个 S_ 和 R, 以及是否终止。</p>
+</li>
+<li><p>更新 Q Table:</p>
+<p><img src="http://latex.codecogs.com/png.latex?q_%7B%5C_predict%7D=Q%5Bs,a%5D"></p>
+<p><img src="http://latex.codecogs.com/png.latex?q_%7B%5C_target%7D=R+%5Cgamma*Q%5Bs%5C_,:%5D_%7Bmax%7D"></p>
+<p><img src="http://latex.codecogs.com/png.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(q_%7B%5C_target%7D-q_%7B_predict%7D)"></p>
+<p><img src="http://latex.codecogs.com/png.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(R+%5Cgamma*Q%5Bs%5C_,:%5D_%7Bmax%7D-Q%5Bs,a%5D)"></p>
+<p>其中 alpha 代表学习率，来决定这次的误差有多少是要被学习的。gamma 代表对未来奖励的衰减值，来决定这次获得奖励的大小。</p>
+</li>
+<li><p>将 S_ 赋给 S, 继续当前循环。</p>
+</li>
+<li><p>判断当前回合是否结束。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Sarsa-on-policy"><a href="#Sarsa-on-policy" class="headerlink" title="Sarsa (on-policy)"></a>Sarsa (on-policy)</h2><h3 id="整体学习流程：-1"><a href="#整体学习流程：-1" class="headerlink" title="整体学习流程："></a>整体学习流程：</h3><p>一次循环</p>
+<ul>
+<li><p>初始化环境</p>
+</li>
+<li><p>根据当前 S， 选择动作 a。(动作选择规则：1.随机选择。2.根据当前 S 最大的 a选择。)</p>
+</li>
+<li><p>当前回合 （循环，直到当前回合结束）</p>
+<ul>
+<li><p>在环境中采取行为 a, 获得下一个 S_ 和 R, 以及是否终止。</p>
+</li>
+<li><p>根据下一个 S_, 选择动作 a_。(动作选择规则同上)</p>
+</li>
+<li><p>更新 Q Table:</p>
+<p><img src="http://latex.codecogs.com/png.latex?q_%7B%5C_predict%7D=Q%5Bs,a%5D"></p>
+<p><img src="http://latex.codecogs.com/png.latex?q_%7B%5C_target%7D=R+%5Cgamma*Q%5Bs%5C_,a%5C_%5D"></p>
+<p><img src="http://latex.codecogs.com/png.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(q_%7B%5C_target%7D-q_%7B_predict%7D)"></p>
+<p><img src="http://latex.codecogs.com/png.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(R+%5Cgamma*Q%5Bs%5C_,a%5C_%5D-Q%5Bs,a%5D)"></p>
+<p>其中 alpha 代表学习率，来决定这次的误差有多少是要被学习的。gamma 代表对未来奖励的衰减值，来决定这次获得奖励的大小。</p>
+</li>
+<li><p>将 S_ 赋给 S, a_ 赋给 a, 继续当前循环。</p>
+</li>
+<li><p>判断当前回合是否结束。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="与-QLearning-的区别："><a href="#与-QLearning-的区别：" class="headerlink" title="与 QLearning 的区别："></a>与 QLearning 的区别：</h3><ul>
+<li>Sarsa 是说到做到型, 也叫 on-policy, 在线学习, 学着自己在做的事情. 而 QLearning 是说到但并不一定做到, 所以它也叫作 Off-policy, 离线学习. 而因为有了 maxQ, Q-learning 也是一个特别勇敢的算法. Q learning 机器人 永远都会选择最近的一条通往成功的道路, 不管这条路会有多危险. 而 Sarsa 则是相当保守, 他会选择离危险远远的, 完成任务是次要的, 保住自己的小命才是第一位. 这就是使用 Sarsa 方法的不同之处.</li>
+<li>Sarsa 在当前 state 已经想好了 state 对应的 action, 而且想好了下一个 state_ 和下一个 action_ (Qlearning 还没有想好下一个 action_)。更新 Q(s,a) 的时候基于的是下一个 Q(s_, a_)(Qlearning 是基于 maxQ(s_))。</li>
+<li>Sarsa 相对于 Qlearning, 更加的胆小. 因为 Qlearning 永远都是想着 maxQ 最大化, 因为这个 maxQ 而变得贪婪, 不考虑其他非 maxQ 的结果. 我们可以理解成 Qlearning 是一种贪婪, 大胆, 勇敢的算法, 对于错误, 死亡并不在乎. 而 Sarsa 是一种保守的算法, 他在乎每一步决策, 对于错误和死亡比较铭感. 这一点我们会在可视化的部分看出他们的不同. 两种算法都有他们的好处, 比如在实际中, 你比较在乎机器的损害, 用一种保守的算法, 在训练时就能减少损坏的次数.</li>
+</ul>
+<h2 id="Sarsa-lambda-on-policy"><a href="#Sarsa-lambda-on-policy" class="headerlink" title="Sarsa-lambda (on-policy)"></a>Sarsa-lambda (on-policy)</h2><h3 id="整体学习流程：-2"><a href="#整体学习流程：-2" class="headerlink" title="整体学习流程："></a>整体学习流程：</h3><p>一次循环</p>
+<ul>
+<li><p>初始化环境</p>
+</li>
+<li><p>根据当前 S， 选择动作 a。(动作选择规则：1.随机选择。2.根据当前 S 最大的 a选择。)</p>
+</li>
+<li><p>初始化 eligibility_trace(动作跟踪)</p>
+</li>
+<li><p>当前回合 （循环，直到当前回合结束）</p>
+<ul>
+<li><p>在环境中采取行为 a, 获得下一个 S_ 和 R, 以及是否终止。</p>
+</li>
+<li><p>根据下一个 S_, 选择动作 a_。(动作选择规则同上)</p>
+</li>
+<li><p>更新 Q Table:</p>
+<p>对于经历过的 (s, a) state-action, 我们让他+1, 证明他是得到 reward 路途中不可或缺的一环。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Method 1:</span><br><span class="line">eligibility_trace.loc[s, a] +&#x3D; 1</span><br><span class="line"># Method 2:</span><br><span class="line">eligibility_trace.loc[s, :] *&#x3D; 0</span><br><span class="line">eligibility_trace.loc[s, a] &#x3D; 1</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://latex.codecogs.com/png.latex?q_%7B%5C_predict%7D=Q%5Bs,a%5D"></p>
+<p><img src="http://latex.codecogs.com/png.latex?q_%7B%5C_target%7D=R+%5Cgamma*Q%5Bs%5C_,a%5C_%5D"></p>
+<p><img src="http://latex.codecogs.com/png.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(q_%7B%5C_target%7D-q_%7B_predict%7D)*eligibility%5C_trace"></p>
+<p><img src="http://latex.codecogs.com/png.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(R+%5Cgamma*Q%5Bs%5C_,a%5C_%5D-Q%5Bs,a%5D)*eligibility%5C_trace"></p>
+<p>eligibility_trace 的值随着时间衰减, 离获取 reward 越远的步, 他的”不可或缺性”越小。</p>
+<p>eligibility_trace = eligibility_trace * gamma * lambda</p>
+<p>其中 alpha 代表学习率，来决定这次的误差有多少是要被学习的。gamma 代表对未来奖励的衰减值，来决定这次获得奖励的大小。lambda 代表的脚步衰减值，0 为单步更新，1 为回合更新。</p>
+</li>
+<li><p>将 S_ 赋给 S, a_ 赋给 a, 继续当前循环。</p>
+</li>
+<li><p>判断当前回合是否结束。</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>强化学习</category>
+      </categories>
+      <tags>
+        <tag>QLearning</tag>
+        <tag>Sarsa</tag>
+      </tags>
+  </entry>
+</search>
