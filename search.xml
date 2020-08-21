@@ -78,8 +78,8 @@
 
 <p><img src="http://latex.codecogs.com/svg.latex?q_%7B%5C_predict%7D=Q%5Bs,a%5D"></p>
 <p><img src="http://latex.codecogs.com/svg.latex?q_%7B%5C_target%7D=R+%5Cgamma*Q%5Bs%5C_,a%5C_%5D"></p>
-<p><img src="http://latex.codecogs.com/svg.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(q_%7B%5C_target%7D-q_%7B_predict%7D)*eligibility%5C_trace"></p>
-<p><img src="http://latex.codecogs.com/svg.latex?Q(s,a)%5E%7Bnew%7D=Q(s,a)+%5Calpha*(R+%5Cgamma*Q%5Bs%5C_,a%5C_%5D-Q%5Bs,a%5D)*eligibility%5C_trace"></p>
+<p><img src="http://latex.codecogs.com/svg.latex?Q_%7Btable%7D%5E%7Bnew%7D=Q_%7Btable%7D+%5Calpha*(q_%7B%5C_target%7D-q_%7B_predict%7D)*eligibility%5C_trace"></p>
+<p><img src="http://latex.codecogs.com/svg.latex?Q_%7Btable%7D%5E%7Bnew%7D=Q_%7Btable%7D+%5Calpha*(R+%5Cgamma*Q%5Bs%5C_,a%5C_%5D-Q%5Bs,a%5D)*eligibility%5C_trace"></p>
 <p>eligibility_trace 的值随着时间衰减, 离获取 reward 越远的步, 他的”不可或缺性”越小。</p>
 <p>eligibility_trace = eligibility_trace * gamma * lambda</p>
 <p>其中 alpha 代表学习率，来决定这次的误差有多少是要被学习的。gamma 代表对未来奖励的衰减值，来决定这次获得奖励的大小。lambda 代表的脚步衰减值，0 为单步更新，1 为回合更新。</p>
