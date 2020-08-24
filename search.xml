@@ -102,7 +102,7 @@
   </entry>
   <entry>
     <title>深度强化学习-DQN</title>
-    <url>/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-DQN/</url>
+    <url>/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/</url>
     <content><![CDATA[<h2 id="Deep-Q-Network"><a href="#Deep-Q-Network" class="headerlink" title="Deep Q Network"></a>Deep Q Network</h2><h3 id="整体学习流程"><a href="#整体学习流程" class="headerlink" title="整体学习流程"></a>整体学习流程</h3><p>一次循环</p>
 <ul>
 <li>初始化环境</li>
@@ -129,7 +129,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="loss-function-的构造"><a href="#loss-function-的构造" class="headerlink" title="loss function 的构造"></a>loss function 的构造</h3><p><img src="https://img-blog.csdn.net/20170612221912864?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzIzNjk0Ng==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<h3 id="loss-function-的构造"><a href="#loss-function-的构造" class="headerlink" title="loss function 的构造"></a>loss function 的构造</h3><p><img src="/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/dqn_loss_function.png" alt="image"></p>
 ]]></content>
       <categories>
         <category>强化学习</category>
