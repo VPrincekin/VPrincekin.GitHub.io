@@ -151,13 +151,25 @@
   </entry>
   <entry>
     <title>机器学习的问题处理.md</title>
-    <url>/2020/11/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86-md/</url>
+    <url>/2020/11/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
       <tags>
         <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编写自己的python包上传到pypi</title>
+    <url>/2020/11/20/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84python%E5%8C%85%E4%B8%8A%E4%BC%A0%E5%88%B0pypi/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>pypi</tag>
       </tags>
   </entry>
 </search>
