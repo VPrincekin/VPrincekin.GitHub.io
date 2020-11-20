@@ -20,22 +20,24 @@
     var CONFIG = {"hostname":"www.betago.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="将深度学习与强化学习相结合，提高强化学习的应用场景">
+  <meta name="description" content="不想把自己的文章寄托在某些网站上，该如何打造属于自己的博客？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度强化学习-DQN">
-<meta property="og:url" content="http://www.betago.com/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/index.html">
+<meta property="og:title" content="亲手搭建一个自己的博客">
+<meta property="og:url" content="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="BetaGO的博客">
-<meta property="og:description" content="将深度学习与强化学习相结合，提高强化学习的应用场景">
+<meta property="og:description" content="不想把自己的文章寄托在某些网站上，该如何打造属于自己的博客？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.betago.com/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/dqn_loss_function.png">
-<meta property="article:published_time" content="2020-08-24T07:32:47.000Z">
-<meta property="article:modified_time" content="2020-08-24T09:35:14.002Z">
+<meta property="og:image" content="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png">
+<meta property="og:image" content="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/A%E8%AE%B0%E5%BD%95.png">
+<meta property="og:image" content="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/dns%E7%AE%A1%E7%90%86.jpeg">
+<meta property="og:image" content="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/%E4%BF%AE%E6%94%B9dns.jpeg">
+<meta property="article:published_time" content="2020-11-20T09:17:27.000Z">
+<meta property="article:modified_time" content="2020-11-20T10:12:35.269Z">
 <meta property="article:author" content="Dehong Wang">
-<meta property="article:tag" content="DQN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.betago.com/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/dqn_loss_function.png">
+<meta name="twitter:image" content="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png">
 
-<link rel="canonical" href="http://www.betago.com/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/">
+<link rel="canonical" href="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
 
 
 <script id="page-configurations">
@@ -48,7 +50,7 @@
   };
 </script>
 
-  <title>深度强化学习-DQN | BetaGO的博客</title>
+  <title>亲手搭建一个自己的博客 | BetaGO的博客</title>
   
 
 
@@ -183,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.betago.com/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/">
+    <link itemprop="mainEntityOfPage" href="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my.png">
@@ -196,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          深度强化学习-DQN
+          亲手搭建一个自己的博客
         </h1>
 
         <div class="post-meta">
@@ -207,7 +209,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-24 15:32:47 / 修改时间：17:35:14" itemprop="dateCreated datePublished" datetime="2020-08-24T15:32:47+08:00">2020-08-24</time>
+              <time title="创建时间：2020-11-20 17:17:27 / 修改时间：18:12:35" itemprop="dateCreated datePublished" datetime="2020-11-20T17:17:27+08:00">2020-11-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,12 +217,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">强化学习</span></a>
+                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">将深度学习与强化学习相结合，提高强化学习的应用场景</div>
+            <div class="post-description">不想把自己的文章寄托在某些网站上，该如何打造属于自己的博客？</div>
 
         </div>
       </header>
@@ -231,33 +233,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Deep-Q-Network"><a href="#Deep-Q-Network" class="headerlink" title="Deep Q Network"></a>Deep Q Network</h2><h3 id="整体学习流程"><a href="#整体学习流程" class="headerlink" title="整体学习流程"></a>整体学习流程</h3><p>一次循环</p>
+        <h3 id="1-购买、绑定独立域名"><a href="#1-购买、绑定独立域名" class="headerlink" title="1. 购买、绑定独立域名"></a>1. 购买、绑定独立域名</h3><p>搭建一个属于自己的博客，首先我们需要拥有一个自己的域名。购买域名的途径有很多，这里推荐一个 <a target="_blank" rel="noopener" href="http://www.godaddy.com/">Godaddy</a> 具体如何购买，自行选择即可。</p>
+<p>在购买完域名之后，我们还需要做一次域名解析。这里为了防止被墙掉。我们选择 <a target="_blank" rel="noopener" href="https://www.dnspod.cn/">DNSPod</a> 的服务, 好用且免费。 在我们注册完之后执行以下步骤：</p>
 <ul>
-<li>初始化环境</li>
-<li>当前回合 （循环，直到当前回合结束）<ul>
-<li>刷新环境</li>
-<li>根据当前 S， 选择动作 a.(动作选择规则：1.随机选择.2.根据当前 S 在 eval_net 中最大的 a 选择.)</li>
-<li>在环境中采取行为 a, 获得下一个 S_ 和 R, 以及是否终止.</li>
-<li>DQN 存储记忆.(总 memory 大小是固定的, 如果超出总大小, 旧 memory 就被新 memory 替换)</li>
-<li>判断当前是否需要学习 (先累积一些记忆再开始学习):<ul>
-<li>DQN学习:<ul>
-<li>检查是否需要替换 target_net 参数.</li>
-<li>从 memory 中随机抽取 batch_size 记忆</li>
-<li>获取 q_next(target_net 产生的 q)和 q_eval(eval_net 产生的 q). </li>
-<li>q_next, q_eval 包含所有 action 的值, 而我们需要的只是已经选择好的 action 的值, 其他的并不需要. 所以我们将其他的 action 值全变成 0, 将用到的 action 误差值 反向传递回去, 作为更新依据. </li>
-<li>q_target = reward + gamma * max(q_next) (reward 来自于当前批次的 batch_memory)</li>
-<li>根据误差((q_target-q_eval)^2), 训练 eval_net, 得到误差 cost.</li>
-<li>逐渐增加 epsilon, 降低行为的随机性.</li>
+<li>首先添加域名记录，在 DNSPod 添加上自己的域名。<br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png" alt="image"></li>
+<li>在 DNSPod 自己的域名下添加一条 A 记录，地址就是 Github Pages 的服务 IP 地址: 192.30.252.153. <a target="_blank" rel="noopener" href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site">github page 服务地址查询</a><br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/A%E8%AE%B0%E5%BD%95.png" alt="image"></li>
+<li>在域名注册商处修改DNS服务:去Godaddy修改Nameservers为这两个地址：f1g1ns1.dnspod.net、f1g1ns2.dnspod.net。<br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/dns%E7%AE%A1%E7%90%86.jpeg" alt="image"><br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/%E4%BF%AE%E6%94%B9dns.jpeg" alt="image"></li>
 </ul>
-</li>
-</ul>
-</li>
-<li>将 S_ 赋给 S, 继续当前循环.</li>
-<li>判断当前回合是否结束.</li>
-</ul>
-</li>
-</ul>
-<h3 id="loss-function-的构造"><a href="#loss-function-的构造" class="headerlink" title="loss function 的构造"></a>loss function 的构造</h3><p><img src="/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/dqn_loss_function.png" alt="image"></p>
+<p>至此，域名的配置就完成了！</p>
+<h3 id="2-使用-Github-Pages-建立博客"><a href="#2-使用-Github-Pages-建立博客" class="headerlink" title="2. 使用 Github Pages 建立博客"></a>2. 使用 Github Pages 建立博客</h3><p>我们需要使用 github 建立一个自己的博客，以 username.github.io 命名。这个命名方式是固定的，username 可以使用你自己的账户名代替。每个用户名下面只能建立一个。</p>
+<p>创建好 username.github.io 项目之后， 提交一个 index.html 文件， 然后 push 到 master 分支，第一次页面生效需要一些时间，大概 10 分钟左右。</p>
+<p>接下来，如果我们想让 username.github.io 能通过你自己的域名来访问，需要在项目的根目录下新建一个名为CNAME的文件，文件内容形如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">betago.online</span><br></pre></td></tr></table></figure>
+<p>设置成功后，根据DNS的情况，最长可能需要一天才能生效，耐心等待吧。</p>
 
     </div>
 
@@ -277,8 +265,8 @@
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
 
   <p><span>本文作者:</span>Dehong Wang</a></p>
-  <p><span>原始链接:</span><a href="/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/" title="深度强化学习-DQN">http://www.betago.com/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.betago.com/2020/08/24/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%B9%8BDQN/"  aria-label="复制成功！"></i></span>
+  <p><span>原始链接:</span><a href="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" title="亲手搭建一个自己的博客">http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span>本博客所有文章除特别声明外，<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">均采用 BY-NC-SA 许可协议。</a> 转载请保留原文链接及作者！</p>  
 </div>
@@ -321,9 +309,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/DQN/" rel="tag"><i class="fa fa-tag"></i>DQN</a>
-          </div>
 
         
 
@@ -331,13 +316,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/20/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AE%97%E6%B3%95-QLearning-Sarsa/" rel="prev" title="强化学习入门算法: QLearning & Sarsa">
-      <i class="fa fa-chevron-left"></i> 强化学习入门算法: QLearning & Sarsa
+    <a href="/2020/11/20/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84python%E5%8C%85%E4%B8%8A%E4%BC%A0%E5%88%B0pypi/" rel="prev" title="编写自己的python包上传到pypi">
+      <i class="fa fa-chevron-left"></i> 编写自己的python包上传到pypi
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/10/27/%E5%8F%91%E7%94%9F%E5%9C%A8%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%89%8D%E7%9A%84%E6%95%85%E4%BA%8B/" rel="next" title="发生在逻辑回归之前的故事.md">
-      发生在逻辑回归之前的故事.md <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -396,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Q-Network"><span class="nav-number">1.</span> <span class="nav-text">Deep Q Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">整体学习流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loss-function-%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-number">1.2.</span> <span class="nav-text">loss function 的构造</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%B4%AD%E4%B9%B0%E3%80%81%E7%BB%91%E5%AE%9A%E7%8B%AC%E7%AB%8B%E5%9F%9F%E5%90%8D"><span class="nav-number">1.</span> <span class="nav-text">1. 购买、绑定独立域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-Github-Pages-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2"><span class="nav-number">2.</span> <span class="nav-text">2. 使用 Github Pages 建立博客</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

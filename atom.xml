@@ -6,7 +6,7 @@
   <link href="http://www.betago.com/atom.xml" rel="self"/>
   
   <link href="http://www.betago.com/"/>
-  <updated>2020-11-20T03:49:57.352Z</updated>
+  <updated>2020-11-20T10:12:35.269Z</updated>
   <id>http://www.betago.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>亲手搭建一个自己的博客</title>
+    <link href="http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://www.betago.com/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</id>
+    <published>2020-11-20T09:17:27.000Z</published>
+    <updated>2020-11-20T10:12:35.269Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-购买、绑定独立域名"><a href="#1-购买、绑定独立域名" class="headerlink" title="1. 购买、绑定独立域名"></a>1. 购买、绑定独立域名</h3><p>搭建一个属于自己的博客，首先我们需要拥有一个自己的域名。购买域名的途径有很多，这里推荐一个 <a href="http://www.godaddy.com/">Godaddy</a> 具体如何购买，自行选择即可。</p><p>在购买完域名之后，我们还需要做一次域名解析。这里为了防止被墙掉。我们选择 <a href="https://www.dnspod.cn/">DNSPod</a> 的服务, 好用且免费。 在我们注册完之后执行以下步骤：</p><ul><li>首先添加域名记录，在 DNSPod 添加上自己的域名。<br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png" alt="image"></li><li>在 DNSPod 自己的域名下添加一条 A 记录，地址就是 Github Pages 的服务 IP 地址: 192.30.252.153. <a href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site">github page 服务地址查询</a><br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/A%E8%AE%B0%E5%BD%95.png" alt="image"></li><li>在域名注册商处修改DNS服务:去Godaddy修改Nameservers为这两个地址：f1g1ns1.dnspod.net、f1g1ns2.dnspod.net。<br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/dns%E7%AE%A1%E7%90%86.jpeg" alt="image"><br><img src="/2020/11/20/%E4%BA%B2%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/%E4%BF%AE%E6%94%B9dns.jpeg" alt="image"></li></ul><p>至此，域名的配置就完成了！</p><h3 id="2-使用-Github-Pages-建立博客"><a href="#2-使用-Github-Pages-建立博客" class="headerlink" title="2. 使用 Github Pages 建立博客"></a>2. 使用 Github Pages 建立博客</h3><p>我们需要使用 github 建立一个自己的博客，以 username.github.io 命名。这个命名方式是固定的，username 可以使用你自己的账户名代替。每个用户名下面只能建立一个。</p><p>创建好 username.github.io 项目之后， 提交一个 index.html 文件， 然后 push 到 master 分支，第一次页面生效需要一些时间，大概 10 分钟左右。</p><p>接下来，如果我们想让 username.github.io 能通过你自己的域名来访问，需要在项目的根目录下新建一个名为CNAME的文件，文件内容形如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">betago.online</span><br></pre></td></tr></table></figure><p>设置成功后，根据DNS的情况，最长可能需要一天才能生效，耐心等待吧。</p>]]></content>
+    
+    
+    <summary type="html">不想把自己的文章寄托在某些网站上，该如何打造属于自己的博客？</summary>
+    
+    
+    
+    <category term="博客" scheme="http://www.betago.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>编写自己的python包上传到pypi</title>
