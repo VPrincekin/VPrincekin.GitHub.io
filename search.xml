@@ -151,7 +151,7 @@
 <p>两边对 ø 求导：</p>
 <p><img src="http://latex.codecogs.com/svg.latex?p(x)%7Bp(y)%7D%27rcos(%5Ctheta)+p(y)%7Bp(x)%7D%27(-rsin(%5Ctheta))=0"></p>
 <p><img src="http://latex.codecogs.com/svg.latex?p(x)%7Bp(y)%7D%27x-p(y)%7Bp(x)%7D%27y=0"></p>
-<p><img src="http://latex.codecogs.com/svg.latex?%5Cfrac%3C!--%EF%BF%BC0--%3E"></p>
+<p>得到：<br>[<img src="http://latex.codecogs.com/svg.latex?%5Cfrac%3C!--%EF%BF%BC0--%3E"></p>
 <p>已知 <img src="http://latex.codecogs.com/svg.latex?%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7Dp(x)dx=1"> 则必有 C 小于 0，上式改写为：<br><img src="http://latex.codecogs.com/svg.latex?p(x)=A*e%5E%7B-%5Cfrac%7B1%7D%7B2%7Dkx%5E%7B2%7D%7D"> 其中 k&gt;0.</p>
 <p><img src="http://latex.codecogs.com/svg.latex?%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7DA*e%5E%7B-%5Cfrac%7B1%7D%7B2%7Dkx%5E%7B2%7D%7Ddx=1"></p>
 <p><img src="http://latex.codecogs.com/svg.latex?2*A*%5Cint_%7B0%7D%5E%7B%5Cinfty%7De%5E%7B-%5Cfrac%7B1%7D%7B2%7Dkx%5E%7B2%7D%7Ddx=1"></p>
