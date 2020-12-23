@@ -16,7 +16,13 @@
 <p>接下来，如果我们想让 username.github.io 能通过你自己的域名来访问，需要在项目的根目录下新建一个名为CNAME的文件，文件内容形如：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">betago.online</span><br></pre></td></tr></table></figure>
 <p>设置成功后，根据DNS的情况，最长可能需要一天才能生效，耐心等待吧～</p>
-<h3 id="3-安装-Hexo"><a href="#3-安装-Hexo" class="headerlink" title="3. 安装 Hexo"></a>3. 安装 Hexo</h3><p>常用的个人博客网站框架有 Hexo 和 Jekyll。 这里我们使用的是 Hexo。 需要自己在电脑常里创建一个文件夹，可以命名为Blog，Hexo 框架与以后你自己发布的网页都在这个文件夹中。(注意，这里的命令都是作用在创建的Blog文件夹中)<br>使用npm命令安装Hexo，输入:</p>
+<h3 id="3-安装-Hexo"><a href="#3-安装-Hexo" class="headerlink" title="3. 安装 Hexo"></a>3. 安装 Hexo</h3><p>常用的个人博客网站框架有 Hexo 和 Jekyll。 这里我们使用的是 Hexo。 需要自己在电脑常里创建一个文件夹，可以命名为Blog，Hexo 框架与以后你自己发布的网页都在这个文件夹中。(注意，这里的命令都是作用在创建的Blog文件夹中)</p>
+<p>安装 Hexo 需要先安装下列应用程序：</p>
+<ul>
+<li><a href="https://nodejs.org/en/">Node.js</a> </li>
+<li><a href="http://git-scm.com/">Git</a></li>
+</ul>
+<p>使用npm命令安装Hexo，输入:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure>
 <p>这个安装时间较长耐心等待，安装完成后，初始化我们的博客，输入:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
